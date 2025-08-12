@@ -11,3 +11,15 @@ services:
       - ./volumes/mongo:/data/db
     env_file:
       - ./env/.mongo.env
+
+  dynamodb:
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb
+    restart: always
+    ports:
+      - 8000:8000
+    command: -jar DynamoDBLocal.jar -sharedDb -dbPath /data
+    volumes:
+      - ./volumes/dynamodb:/data
+    env_file:
+      - ./env/.dynamodb.env
